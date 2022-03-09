@@ -1,0 +1,10 @@
+name: Outlaws
+version: '${project.version}'
+main: com.alcano.outlaws.Outlaws
+api-version: 1.17
+authors: [ Alcano ]
+depend: [ ProtocolLib ]
+
+commands:
+  reggive:
+  clerk:
