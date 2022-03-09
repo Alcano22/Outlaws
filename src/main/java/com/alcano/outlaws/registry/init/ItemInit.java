@@ -10,9 +10,7 @@ public class ItemInit {
 
     public static final Register<ItemStack> ITEMS = new Register<>();
 
-    public static final RegistryObject<ItemStack> TEST_ITEM = ITEMS.register("test_item",
-            () -> new ItemBuilder(Material.ALLIUM).name("The holy allium").build());
-    public static final RegistryObject<ItemStack> TEST_ITEM_2 = ITEMS.register("test_item_2",
-            () -> new ItemBuilder(Material.ALLIUM).name("The holy allium").build());
+    public static final RegistryObject<ItemStack> REVOLVER = ITEMS.register("revolver",
+            () -> new ItemBuilder(Material.CARROT_ON_A_STICK).name("Revolver").customModelData(1).build());
 
 }

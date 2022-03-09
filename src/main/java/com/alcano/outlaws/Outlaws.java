@@ -1,8 +1,11 @@
 package com.alcano.outlaws;
 
 import com.alcano.outlaws.command.ClerkCommand;
+import com.alcano.outlaws.command.MoneyCommand;
 import com.alcano.outlaws.command.RegistryGiveCommand;
+import com.alcano.outlaws.listener.MenuListener;
 import com.alcano.outlaws.listener.PlayerMoveListener;
+import com.alcano.outlaws.listener.PlayerPickupItemListener;
 import com.alcano.outlaws.listener.RegionListener;
 import com.alcano.outlaws.listener.packet.PacketListener;
 import com.alcano.outlaws.util.Updater;
@@ -23,9 +26,12 @@ public final class Outlaws extends JavaPlugin {
         PluginManager plm = Bukkit.getPluginManager();
         plm.registerEvents(new PlayerMoveListener(), this);
         plm.registerEvents(new RegionListener(), this);
+        plm.registerEvents(new MenuListener(), this);
+        plm.registerEvents(new PlayerPickupItemListener(), this);
 
         this.getCommand("reggive").setExecutor(new RegistryGiveCommand());
         this.getCommand("clerk").setExecutor(new ClerkCommand());
+        this.getCommand("money").setExecutor(new MoneyCommand());
 
         PacketListener packetListener = new PacketListener();
         packetListener.start();

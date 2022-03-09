@@ -17,6 +17,8 @@ public class MenuListener implements Listener {
         if (holder instanceof Menu menu) {
             e.setCancelled(true);
 
+            if (e.getCurrentItem() == null) return;
+
             menu.onClick(e);
         }
     }

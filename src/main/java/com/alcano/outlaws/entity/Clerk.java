@@ -1,5 +1,7 @@
 package com.alcano.outlaws.entity;
 
+import com.alcano.outlaws.inventory.menusystem.PlayerMenuUtility;
+import com.alcano.outlaws.inventory.menusystem.menu.clerk.OptionMenu;
 import com.alcano.outlaws.sound.Sounds;
 import com.alcano.outlaws.util.Random;
 import com.alcano.outlaws.world.Shop;
@@ -12,7 +14,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.EquipmentSlot;
 
 public class Clerk extends NPC {
 
@@ -45,7 +46,10 @@ public class Clerk extends NPC {
     public void onInteract(Player p, EnumWrappers.Hand hand, EnumWrappers.EntityUseAction action) {
         if (hand != EnumWrappers.Hand.MAIN_HAND || action != EnumWrappers.EntityUseAction.INTERACT) return;
 
-        p.playSound(this.getBukkitEntity().getLocation(), Sounds.ENTITY_GUNSMITH_ENTER_SELL_MENU, 1.0f, Random.range(.9f, 1.1f));
+        p.playSound(this.getBukkitEntity().getLocation(), Sounds.ENTITY_GUNSMITH_ENTER_OPTION_MENU, 1f, Random.range(.9f, 1.1f));
+
+        OptionMenu menu = new OptionMenu(new PlayerMenuUtility(p), this);
+        menu.open();
     }
 
     public Shop getShop() {

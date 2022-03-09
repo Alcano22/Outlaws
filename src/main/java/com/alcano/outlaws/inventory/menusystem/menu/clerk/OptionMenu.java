@@ -1,16 +1,19 @@
-package com.alcano.outlaws.inventory.menusystem.menu;
+package com.alcano.outlaws.inventory.menusystem.menu.clerk;
 
+import com.alcano.outlaws.entity.Clerk;
 import com.alcano.outlaws.inventory.ItemBuilder;
-import com.alcano.outlaws.inventory.menusystem.Menu;
 import com.alcano.outlaws.inventory.menusystem.PlayerMenuUtility;
+import com.alcano.outlaws.sound.Sounds;
+import com.alcano.outlaws.util.Random;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class SellOrBuyMenu extends Menu {
+public class OptionMenu extends ClerkMenu {
 
-    public SellOrBuyMenu(PlayerMenuUtility utility) {
-        super(utility);
+    public OptionMenu(PlayerMenuUtility utility, Clerk clerk) {
+        super(utility, clerk);
     }
 
     @Override
@@ -34,13 +37,20 @@ public class SellOrBuyMenu extends Menu {
 
     @Override
     public void onClick(InventoryClickEvent e) {
+        Player p = (Player) e.getWhoClicked();
+
         switch (e.getCurrentItem().getType()) {
-            case CARROT_ON_A_STICK:
+            case CARROT_ON_A_STICK -> {
                 e.getWhoClicked().closeInventory();
-                break;
-            case RAW_GOLD:
+
+                p.sendMessage("Open buy menu");
+            }
+            case RAW_GOLD -> {
                 e.getWhoClicked().closeInventory();
-                break;
+
+                p.playSound(clerk.getBukkitEntity().getLocation(), Sounds.ENTITY_GUNSMITH_ENTER_SELL_MENU, 1f, Random.range(.9f, 1.1f));
+                new SellMenu(this.utility, this.clerk).open();
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.EnumWrappers;
+import org.bukkit.Bukkit;
 
 public class PacketListener {
 
@@ -27,7 +28,7 @@ public class PacketListener {
                 NPC npc = NPC.getById(entityId);
                 if (npc == null) return;
 
-                npc.onInteract(event.getPlayer(), hand, action);
+                Bukkit.getScheduler().runTask(Outlaws.getInstance(), () -> npc.onInteract(event.getPlayer(), hand, action));
             }
         });
     }
