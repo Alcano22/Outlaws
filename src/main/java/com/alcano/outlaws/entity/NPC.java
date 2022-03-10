@@ -51,4 +51,19 @@ public abstract class NPC extends ServerPlayer implements IUpdatable {
     }
 
     public abstract void onInteract(Player p, EnumWrappers.Hand hand, EnumWrappers.EntityUseAction action);
+
+    public void addToClient(Player p) {
+        ServerPlayer sp = ((CraftPlayer) p).getHandle();
+
+        ServerGamePacketListenerImpl connection = sp.connection;
+        connection.send(new ClientboundPlayerInfoPacket(ClientboundPlayerInfoPacket.Action.ADD_PLAYER, this));
+        connection.send(new ClientboundAddPlayerPacket(this));
+    }
+
+    public void removeFromClient(Player p) {
+        ServerPlayer sp = ((CraftPlayer) p).getHandle();
+
+        ServerGamePacketListenerImpl connection = sp.connection;
+        connection.send(new ClientboundPlayerInfoPacket(ClientboundPlayerInfoPacket.Action.REMOVE_PLAYER, this));
+    }
 }

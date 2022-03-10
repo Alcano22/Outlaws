@@ -8,6 +8,7 @@ import com.alcano.outlaws.util.Random;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class OptionMenu extends ClerkMenu {
@@ -52,5 +53,10 @@ public class OptionMenu extends ClerkMenu {
                 new SellMenu(this.utility, this.clerk).open();
             }
         }
+    }
+
+    @Override
+    public void onClose(InventoryCloseEvent e) {
+
     }
 }

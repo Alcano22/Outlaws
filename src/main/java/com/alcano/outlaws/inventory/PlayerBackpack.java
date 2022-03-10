@@ -41,6 +41,8 @@ public class PlayerBackpack {
     public boolean add(ItemStack item) {
         if (this.items.size() >= this.capacity) return false;
 
+        this.player.sendMessage("+ " + Items.ITEM_DETAIL_MAP.get(item.getType()).name);
+        item.setAmount(1);
         this.items.add(item);
         return true;
     }
