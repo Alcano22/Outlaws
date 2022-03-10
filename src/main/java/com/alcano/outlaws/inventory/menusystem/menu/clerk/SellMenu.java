@@ -59,6 +59,8 @@ public class SellMenu extends ClerkMenu {
         this.utility.owner.closeInventory();
         this.hasSold = true;
         this.open();
+
+        System.out.println("");
     }
 
     @Override
